@@ -1,0 +1,66 @@
+/* Basic reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fbe6e4 0%, #ffe5ec 100%);
+  color: #333;
+  padding: 1rem;
+  text-align: center;
+}
+
+.question {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.buttons-container {
+  position: relative;
+  width: 300px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  margin: 0.5rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn.yes {
+  background-color: #ff6b81;
+  color: #fff;
+}
+
+.btn.no {
+  background-color: #6c757d;
+  color: #fff;
+  position: absolute;
+  /* Will be positioned by script */
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.message {
+  font-size: 1.8rem;
+  margin-top: 1.5rem;
+  color: #d6336c;
+  line-height: 1.5;
+}
