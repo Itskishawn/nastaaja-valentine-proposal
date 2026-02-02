@@ -33,6 +33,12 @@ function showLoveMessage() {
     spread: 70,
     origin: { y: 0.6 },
   });
+
+  // Change the background to the uploaded image once she answers
+  const bgUrl = '8B81FBBF-208F-4171-841B-F0031EC20145.jpeg';
+  document.body.style.backgroundImage = `url(${bgUrl})`;
+  document.body.style.backgroundSize = 'cover';
+  document.body.style.backgroundPosition = 'center';
 }
 
 // When hovering over the No button, move it away

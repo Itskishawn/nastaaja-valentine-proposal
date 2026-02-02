@@ -64,3 +64,11 @@ body {
   color: #d6336c;
   line-height: 1.5;
 }
+
+/* Note under the buttons */
+.note {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  color: #555;
+  font-style: italic;
+}
