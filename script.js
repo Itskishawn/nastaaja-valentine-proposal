@@ -36,9 +36,19 @@ function showLoveMessage() {
 
   // Change the background to the uploaded image once she answers
   const bgUrl = '8B81FBBF-208F-4171-841B-F0031EC20145.jpeg';
+
+  // Hide the note (track-star message) so it's only shown on the initial question screen
+  const noteEl = document.querySelector('.note');
+  if (noteEl) {
+    noteEl.style.display = 'none';
+  }
+
   document.body.style.backgroundImage = `url(${bgUrl})`;
-  document.body.style.backgroundSize = 'cover';
-  document.body.style.backgroundPosition = 'center';
+  // Set the background size to "contain" so the full photo is visible
+  document.body.style.backgroundSize = 'contain';
+  document.body.style.backgroundRepeat = 'no-repeat';
+  // Position the image so the couple is centered toward the top of the screen
+  document.body.style.backgroundPosition = 'center top';
 }
 
 // When hovering over the No button, move it away
