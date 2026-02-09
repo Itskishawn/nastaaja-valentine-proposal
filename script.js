@@ -20,6 +20,8 @@ function moveNoButton() {
   // Apply positions
   noBtn.style.left = `${randLeft}px`;
   noBtn.style.top = `${randTop}px`;
+  // Reset the transform so the button isn't shifted by its initial translateX
+  noBtn.style.transform = 'none';
 }
 
 // Show celebration message and confetti
@@ -108,8 +110,8 @@ function startHearts() {
   }, 800);
 }
 
-// Initially position the No button randomly and start hearts on page load
+// Start floating hearts when the page has loaded.  We do not reposition the
+// No button on load so that it begins below the Yes button.
 window.addEventListener('load', () => {
-  moveNoButton();
   startHearts();
 });

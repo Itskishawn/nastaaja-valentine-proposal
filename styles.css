@@ -62,8 +62,11 @@ body {
   background-color: #6c757d;
   color: #fff;
   position: absolute;
-  /* Will be positioned by script */
-
+  /* Initially position the No button below the Yes button.  It will be moved
+     on hover via JavaScript, but starting it lower avoids overlap. */
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
   /* Ensure the No button sits below the Yes button in the stacking context */
   z-index: 1;
 }
@@ -133,13 +136,17 @@ body {
 }
 
 .big-heart path {
-  stroke: #ff4081;
-  stroke-width: 1.5;
+  /* Use a richer pink for the heart and make both the outline and fill the same color */
+  stroke: #e91e63;
+  stroke-width: 2;
   /* Increase dash array and offset proportionally to accommodate larger heart size */
-  stroke-dasharray: 200;
-  stroke-dashoffset: 200;
+  stroke-dasharray: 250;
+  stroke-dashoffset: 250;
   fill: none;
-  animation: draw-heart 2s linear forwards, fill-heart 1s ease forwards 2s;
+  animation: draw-heart 2s linear forwards,
+             fill-heart 1s ease forwards 2s,
+             beat-heart 1.5s ease-in-out infinite 3s;
+  transform-origin: center;
 }
 
 @keyframes draw-heart {
@@ -148,7 +155,13 @@ body {
 
 @keyframes fill-heart {
   from { fill: none; }
-  to { fill: #ffc1e3; }
+  to { fill: #e91e63; }
+}
+
+/* Heartbeat animation for the big heart after it has been drawn and filled */
+@keyframes beat-heart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
 .yay {
