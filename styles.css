@@ -30,12 +30,15 @@ body {
 .buttons-container {
   position: relative;
   width: 300px;
-  /* Increase the height of the button container so the No button has more room to move around
-     without overlapping the Yes button. */
-  height: 200px;
+  /* Increase the height of the button container and stack the buttons vertically.  This
+     ensures the Yes button stays at the top and the No button starts beneath it.
+     The No button is absolutely positioned at the bottom of this container. */
+  height: 220px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  gap: 1rem;
 }
 
 .btn {
@@ -62,9 +65,10 @@ body {
   background-color: #6c757d;
   color: #fff;
   position: absolute;
-  /* Initially position the No button below the Yes button.  It will be moved
-     on hover via JavaScript, but starting it lower avoids overlap. */
-  top: 120px;
+  /* Position the No button at the bottom of the container.  Using bottom
+     ensures it starts below the Yes button.  When it moves via JavaScript,
+     the top/left values will override these. */
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   /* Ensure the No button sits below the Yes button in the stacking context */
@@ -135,14 +139,17 @@ body {
   height: 200px;
 }
 
-.big-heart path {
-  /* Use a richer pink for the heart and make both the outline and fill the same color */
+/* Styles for the heart path inside the big heart SVG */
+.big-heart .heart-path {
+  /* Use a richer pink for the stroke */
   stroke: #e91e63;
   stroke-width: 2;
-  /* Increase dash array and offset proportionally to accommodate larger heart size */
+  /* Dashed stroke setup for drawing animation */
   stroke-dasharray: 250;
   stroke-dashoffset: 250;
+  /* Start with no fill; the fill will be animated to the gradient */
   fill: none;
+  /* Draw the heart outline, then animate the fill to the gradient, then beat it */
   animation: draw-heart 2s linear forwards,
              fill-heart 1s ease forwards 2s,
              beat-heart 1.5s ease-in-out infinite 3s;
@@ -155,7 +162,8 @@ body {
 
 @keyframes fill-heart {
   from { fill: none; }
-  to { fill: #e91e63; }
+  /* Fill with the gradient defined in the SVG's defs for a subtle 3D effect */
+  to { fill: url(#heartGradient); }
 }
 
 /* Heartbeat animation for the big heart after it has been drawn and filled */
