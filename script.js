@@ -55,8 +55,15 @@ function showLoveMessage() {
   // Set the background size to "contain" so the full photo is visible
   document.body.style.backgroundSize = 'contain';
   document.body.style.backgroundRepeat = 'no-repeat';
-  // Position the image so the couple is centered toward the top of the screen
-  document.body.style.backgroundPosition = 'center top';
+  // Position the image so the couple appears in view.  Using center bottom helps
+  // keep the subjects in the frame while still showing the background.
+  document.body.style.backgroundPosition = 'center bottom';
+
+  // Hide the original question heading once she answers so only the celebration message is shown
+  const questionEl = document.querySelector('.question');
+  if (questionEl) {
+    questionEl.style.display = 'none';
+  }
 }
 
 // When hovering over the No button, move it away
