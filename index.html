@@ -7,15 +7,21 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1 class="question">Nastaaja, will you be my Valentine?</h1>
+    <h1 class="question">Nastaaja, will you be my Valentine? 💕</h1>
     <div id="buttons" class="buttons-container">
-      <button id="yesBtn" class="btn yes">Yes</button>
+      <button id="yesBtn" class="btn yes">Yes! 👩🏾‍❤️‍👨🏾</button>
       <button id="noBtn" class="btn no">No</button>
     </div>
     <div id="message" class="message" style="display: none;"></div>
 
     <!-- Fun note under the buttons -->
-    <p class="note">“No” seems to be a track star run 😉</p>
+    <p class="note">“No” seems to be shy 😉</p>
+
+    <!-- Container for floating hearts -->
+    <div id="hearts-container"></div>
+
+    <!-- Hidden audio player for music -->
+    <iframe id="bg-music" width="0" height="0" src="https://www.youtube-nocookie.com/embed/poHChGklBI8?autoplay=1&amp;loop=1&amp;playlist=poHChGklBI8" frameborder="0" allow="autoplay" style="display: none;"></iframe>
 
     <!-- Confetti library for celebration -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>

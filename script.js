@@ -26,7 +26,15 @@ function moveNoButton() {
 function showLoveMessage() {
   buttonsDiv.style.display = 'none';
   message.style.display = 'block';
-  message.innerHTML = `Yay! I knew you'd say yes, <strong>Nastaaja</strong>!<br>Happy Valentine's Day! 🥰`;
+  // Build the final message with a drawing heart and lines
+  message.innerHTML = `
+    <svg class="big-heart" viewBox="0 0 32 29.6">
+      <path d="M23.6,0c-3.7,0-6.8,2.9-7.6,4.2C15.2,2.9,12.1,0,8.4,0C3.8,0,0,3.7,0,8.3c0,9.5,16,21.3,16,21.3s16-11.6,16-21.3 C32,3.7,28.3,0,23.6,0z"></path>
+    </svg>
+    <h2 class="yay">Yay! 🎉</h2>
+    <p class="best">Best decision ever!</p>
+    <p class="love">I LOVE YOU 😘</p>
+  `;
   // Trigger confetti for celebration
   confetti({
     particleCount: 150,
@@ -72,5 +80,29 @@ yesBtn.addEventListener('click', (e) => {
   showLoveMessage();
 });
 
-// Initially position the No button randomly once the page loads
-window.addEventListener('load', moveNoButton);
+// Function to start floating hearts animation
+function startHearts() {
+  const container = document.getElementById('hearts-container');
+  if (!container) return;
+  setInterval(() => {
+    const heart = document.createElement('span');
+    heart.classList.add('floating-heart');
+    heart.textContent = '💕';
+    // random horizontal position
+    heart.style.left = Math.random() * 100 + 'vw';
+    // random duration between 4 and 7 seconds
+    const duration = 4 + Math.random() * 3;
+    heart.style.animationDuration = duration + 's';
+    container.appendChild(heart);
+    // remove after animation ends
+    setTimeout(() => {
+      heart.remove();
+    }, duration * 1000);
+  }, 800);
+}
+
+// Initially position the No button randomly and start hearts on page load
+window.addEventListener('load', () => {
+  moveNoButton();
+  startHearts();
+});
