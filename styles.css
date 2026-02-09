@@ -135,8 +135,9 @@ body {
 .big-heart path {
   stroke: #ff4081;
   stroke-width: 1.5;
-  stroke-dasharray: 150;
-  stroke-dashoffset: 150;
+  /* Increase dash array and offset proportionally to accommodate larger heart size */
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
   fill: none;
   animation: draw-heart 2s linear forwards, fill-heart 1s ease forwards 2s;
 }
@@ -151,8 +152,9 @@ body {
 }
 
 .yay {
-  font-size: 2.2rem;
-  margin-top: 1rem;
+  font-size: 2.4rem;
+  /* Reduce the margin-top since the heart is larger; this keeps the text closer but still separated */
+  margin-top: 0.5rem;
   color: #d81b60;
 }
 
