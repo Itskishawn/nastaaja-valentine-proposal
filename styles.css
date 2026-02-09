@@ -12,7 +12,8 @@ body {
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+  /* A warm, inviting gradient for the first page */
+  background: linear-gradient(135deg, #ffe1e8 0%, #f8a1c4 100%);
   color: #333;
   padding: 1rem;
   text-align: center;
@@ -82,7 +83,7 @@ body {
 .note {
   font-size: 1rem;
   margin-top: 0.5rem;
-  color: #555;
+  color: #6d3b5f;
   font-style: italic;
 }
 
@@ -126,8 +127,9 @@ body {
 .big-heart {
   display: block;
   margin: 0 auto 1rem;
-  width: 200px;
-  height: 180px;
+  /* Increase size of the drawn heart for greater impact on the celebration page */
+  width: 240px;
+  height: 200px;
 }
 
 .big-heart path {

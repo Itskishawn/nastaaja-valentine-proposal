@@ -15,13 +15,27 @@
     <div id="message" class="message" style="display: none;"></div>
 
     <!-- Fun note under the buttons -->
-    <p class="note">“No” seems to be shy 😉</p>
+    <p class="note">'No' seems to be shy 😉</p>
 
     <!-- Container for floating hearts -->
     <div id="hearts-container"></div>
 
     <!-- Hidden audio player for music -->
-    <iframe id="bg-music" width="0" height="0" src="https://www.youtube-nocookie.com/embed/poHChGklBI8?autoplay=1&amp;loop=1&amp;playlist=poHChGklBI8" frameborder="0" allow="autoplay" style="display: none;"></iframe>
+    <!--
+      Play "I Wanna Be Yours" by Arctic Monkeys on repeat. We use the nocookie domain
+      to avoid tracking cookies and set the video to autoplay and loop. The
+      playlist parameter ensures looping works as expected. If this embed
+      ever fails, replace the video ID with another "I Wanna Be Yours" video ID.
+    -->
+    <iframe
+      id="bg-music"
+      width="0"
+      height="0"
+      src="https://www.youtube-nocookie.com/embed/8iDj0t4Olf4?autoplay=1&amp;loop=1&amp;playlist=8iDj0t4Olf4"
+      frameborder="0"
+      allow="autoplay"
+      style="display: none;"
+    ></iframe>
 
     <!-- Confetti library for celebration -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
