@@ -29,7 +29,9 @@ body {
 .buttons-container {
   position: relative;
   width: 300px;
-  height: 150px;
+  /* Increase the height of the button container so the No button has more room to move around
+     without overlapping the Yes button. */
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,6 +51,10 @@ body {
   background-color: #ff6b81;
   color: #fff;
   animation: heartbeat 2s infinite;
+
+  /* Keep the Yes button above the No button so it’s always clickable */
+  position: relative;
+  z-index: 2;
 }
 
 .btn.no {
@@ -56,6 +62,9 @@ body {
   color: #fff;
   position: absolute;
   /* Will be positioned by script */
+
+  /* Ensure the No button sits below the Yes button in the stacking context */
+  z-index: 1;
 }
 
 .btn:active {
