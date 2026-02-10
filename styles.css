@@ -33,12 +33,13 @@ body {
   /* Increase the height of the button container and stack the buttons vertically.  This
      ensures the Yes button stays at the top and the No button starts beneath it.
      The No button is absolutely positioned at the bottom of this container. */
-  height: 220px;
+  /* Reduce the height and spacing so the Yes and No buttons sit closer together */
+  height: 180px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .btn {
@@ -133,17 +134,19 @@ body {
 /* Styles for the big heart drawing and final messages */
 .big-heart {
   display: block;
-  margin: 0 auto 1rem;
-  /* Increase size of the drawn heart for greater impact on the celebration page */
-  width: 240px;
-  height: 200px;
+  /* Position the heart closer to the top of the page so it doesn't cover faces in the background photo */
+  margin: 1rem auto;
+  /* Reduce the overall size slightly for better layout with the photo */
+  width: 200px;
+  height: 180px;
 }
 
 /* Styles for the heart path inside the big heart SVG */
 .big-heart .heart-path {
   /* Use a richer pink for the stroke */
   stroke: #e91e63;
-  stroke-width: 2;
+  /* Increase stroke width for a bolder outline reminiscent of a 3D design */
+  stroke-width: 4;
   /* Dashed stroke setup for drawing animation */
   stroke-dasharray: 250;
   stroke-dashoffset: 250;
@@ -161,9 +164,15 @@ body {
 }
 
 @keyframes fill-heart {
-  from { fill: none; }
-  /* Fill with the gradient defined in the SVG's defs for a subtle 3D effect */
-  to { fill: url(#heartGradient); }
+  from {
+    fill: none;
+  }
+  to {
+    /* Fill the heart with the same rich pink used for the stroke.  This creates
+       a cohesive look once the outline has been drawn.  If you prefer a
+       gradient, you can replace this value with `url(#heartGradient)`. */
+    fill: #e91e63;
+  }
 }
 
 /* Heartbeat animation for the big heart after it has been drawn and filled */
@@ -180,9 +189,11 @@ body {
 }
 
 .best {
-  font-size: 1.5rem;
-  color: #ad1457;
-  font-family: cursive;
+  /* Use similar styling to the "I LOVE YOU" line but without all caps */
+  font-size: 1.6rem;
+  color: #880e4f;
+  font-weight: bold;
+  font-family: inherit;
 }
 
 .love {

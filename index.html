@@ -23,23 +23,19 @@
 
     <!-- Hidden audio player for music -->
     <!--
-      Play "I Wanna Be Yours" by Arctic Monkeys on repeat. We use the nocookie domain
-      to avoid tracking cookies and set the video to autoplay and loop. The
-      playlist parameter ensures looping works as expected. If this embed
-      ever fails, replace the video ID with another "I Wanna Be Yours" video ID.
-    -->
-    <!--
-      Hidden YouTube player for the song "I Wanna Be Yours". We set the video
-      to autoplay muted so browsers allow it to load. The `enablejsapi=1` and
-      `mute=1` parameters allow us to control the player via the postMessage API.
-      Once she answers, we will unmute and play the video so the music is heard.
-      The playlist parameter ensures the song loops continuously.
+      Play "I Wanna Be Yours" by Arctic Monkeys on repeat.  To increase the odds that
+      the music is heard after she interacts with the page, we remove the `mute`
+      parameter.  Autoplay is still enabled and the `allow` attribute permits
+      autoplaying audio.  Because modern browsers often block unmuted autoplay
+      until a user interaction, the video will begin playing once she clicks
+      Yes/No.  Should playback fail, you may need to click the tiny hidden
+      player or adjust your browser's autoplay settings.
     -->
     <iframe
       id="bg-music"
       width="0"
       height="0"
-      src="https://www.youtube-nocookie.com/embed/8iDj0t4Olf4?enablejsapi=1&amp;autoplay=1&amp;loop=1&amp;mute=1&amp;playlist=8iDj0t4Olf4&amp;controls=0&amp;rel=0"
+      src="https://www.youtube-nocookie.com/embed/8iDj0t4Olf4?autoplay=1&amp;loop=1&amp;playlist=8iDj0t4Olf4&amp;controls=0&amp;rel=0"
       frameborder="0"
       allow="autoplay; encrypted-media"
       allowfullscreen

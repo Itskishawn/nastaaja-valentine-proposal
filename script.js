@@ -31,17 +31,13 @@ function showLoveMessage() {
   buttonsDiv.style.display = 'none';
   message.style.display = 'block';
   // Build the final message with a drawing heart and lines
+  // Insert the large heart SVG and celebratory messages.  The heart path uses
+  // the .heart-path class for animations defined in the CSS.  We do not
+  // include any <defs> here because the fill is controlled by CSS.  After
+  // drawing, the heart will fill with a rich pink and then beat.
   message.innerHTML = `
     <svg class="big-heart" viewBox="0 0 32 29.6">
-      <defs>
-        <!-- Define a radial gradient to give the heart a subtle 3D effect -->
-        <radialGradient id="heartGradient" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#f06292" />
-          <stop offset="100%" stop-color="#c2185b" />
-        </radialGradient>
-      </defs>
-      <!-- Heart path: the stroke draws first, then the fill animates. The fill uses the gradient defined above. -->
-      <path class="heart-path" d="M23.6,0c-3.7,0-6.8,2.9-7.6,4.2C15.2,2.9,12.1,0,8.4,0C3.8,0,0,3.7,0,8.3c0,9.5,16,21.3,16,21.3s16-11.6,16-21.3 C32,3.7,28.3,0,23.6,0z" fill="url(#heartGradient)"></path>
+      <path class="heart-path" d="M23.6,0c-3.7,0-6.8,2.9-7.6,4.2C15.2,2.9,12.1,0,8.4,0C3.8,0,0,3.7,0,8.3c0,9.5,16,21.3,16,21.3s16-11.6,16-21.3 C32,3.7,28.3,0,23.6,0z"></path>
     </svg>
     <h2 class="yay">Yay! 🎉</h2>
     <p class="best">Best decision ever!</p>
@@ -77,25 +73,17 @@ function showLoveMessage() {
     questionEl.style.display = 'none';
   }
 
-  // Once she answers, unmute and play the background music.  We use the YouTube
-  // IFrame API via postMessage to control the player.  The iframe is muted
-  // initially to satisfy autoplay restrictions.  Calling playVideo and unMute
-  // after a user interaction will allow the audio to be heard.
-  const musicFrame = document.getElementById('bg-music');
-  if (musicFrame && musicFrame.contentWindow) {
-    // Play the video (in case it was paused) and unmute it
-    try {
-      musicFrame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
-      musicFrame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
-    } catch (e) {
-      // Some browsers may restrict postMessage; ignore errors silently
-      console.warn('Unable to control music iframe:', e);
-    }
-  }
+  // Once she answers the question, we leave the iframe alone.  Modern browsers
+  // will typically allow unmuted playback after a user interaction, so
+  // the music should begin automatically.  If autoplay is blocked, your
+  // browser may still require a manual interaction with the player to start.
 }
 
-// When hovering over the No button, move it away
+// When hovering over or entering the No button, move it away.  Using
+// both mouseover and mouseenter ensures the button runs when the cursor
+// touches it, even if pointer events behave differently across browsers.
 noBtn.addEventListener('mouseover', moveNoButton);
+noBtn.addEventListener('mouseenter', moveNoButton);
 
 // When the No button is clicked, ask if she's sure, otherwise move again
 noBtn.addEventListener('click', (e) => {
