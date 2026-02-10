@@ -84,6 +84,13 @@ function showLoveMessage() {
   // properties here so the second level matches the first.  This also ensures
   // there is no white space where the photo does not cover the page.
 
+  // After the confetti animations have finished, reveal the "Next" button
+  // so she can proceed to the next part of the surprise.  The delay here
+  // should be long enough to encompass the multi‑directional bursts as well.
+  setTimeout(() => {
+    showNextButton();
+  }, 3500);
+
   // Once she answers the question, we leave the iframe alone.  Modern browsers
   // will typically allow unmuted playback after a user interaction, so
   // the music should begin automatically.  If autoplay is blocked, your
@@ -139,4 +146,121 @@ function startHearts() {
 // No button on load so that it begins below the Yes button.
 window.addEventListener('load', () => {
   startHearts();
+});
+
+/*
+ * Additional logic for multi‑level experience
+ *
+ * After the initial question and celebration, the user can progress through
+ * several levels of interaction.  The "Next" button appears once the
+ * confetti has finished, and clicking it reveals level 3.  Level 3
+ * displays a congratulatory message with a bouncing surprise image and
+ * invites the user to continue.  Level 4 contains a February calendar
+ * where only the 14th can be selected; choosing that date reveals a
+ * continuation button.  Level 5 shares the final gift information and
+ * triggers a dreamy smoke effect after a short pause.
+ */
+
+// Show the "Next" button
+function showNextButton() {
+  const nextBtn = document.getElementById('nextBtn');
+  if (nextBtn) {
+    nextBtn.style.display = 'inline-block';
+  }
+}
+
+// Transition to level 3
+function showLevel3() {
+  const messageEl = document.getElementById('message');
+  const level3 = document.getElementById('level3');
+  if (messageEl) messageEl.style.display = 'none';
+  if (level3) level3.style.display = 'flex';
+  // Hide the "Next" button now that it has been used
+  const nextBtn = document.getElementById('nextBtn');
+  if (nextBtn) nextBtn.style.display = 'none';
+}
+
+// Build the February calendar and attach click listener to the 14th
+function generateCalendar() {
+  const container = document.getElementById('calendarContainer');
+  if (!container) return;
+  container.innerHTML = '';
+  const table = document.createElement('table');
+  // Header row for days of week
+  const headerRow = document.createElement('tr');
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  days.forEach(day => {
+    const th = document.createElement('th');
+    th.textContent = day;
+    headerRow.appendChild(th);
+  });
+  table.appendChild(headerRow);
+  // Determine February of current year
+  const year = new Date().getFullYear();
+  const monthIndex = 1; // February
+  const firstDay = new Date(year, monthIndex, 1).getDay();
+  const daysInMonth = 28; // non‑leap year February
+  let dayCounter = 1;
+  // Up to 6 rows of weeks
+  for (let i = 0; i < 6; i++) {
+    const row = document.createElement('tr');
+    for (let j = 0; j < 7; j++) {
+      const cell = document.createElement('td');
+      if (i === 0 && j < firstDay) {
+        cell.textContent = '';
+      } else if (dayCounter > daysInMonth) {
+        cell.textContent = '';
+      } else {
+        cell.textContent = dayCounter;
+        if (dayCounter === 14) {
+          cell.classList.add('available');
+          cell.addEventListener('click', () => selectDate(cell));
+        }
+        dayCounter++;
+      }
+      row.appendChild(cell);
+    }
+    table.appendChild(row);
+    if (dayCounter > daysInMonth) break;
+  }
+  container.appendChild(table);
+}
+
+// Called when the 14th is clicked
+function selectDate(cell) {
+  cell.classList.add('selected');
+  const btn = document.getElementById('toLevel5Btn');
+  if (btn) btn.style.display = 'inline-block';
+}
+
+// Transition to level 4
+function showLevel4() {
+  const level3 = document.getElementById('level3');
+  const level4 = document.getElementById('level4');
+  if (level3) level3.style.display = 'none';
+  if (level4) level4.style.display = 'flex';
+  generateCalendar();
+}
+
+// Transition to level 5
+function showLevel5() {
+  const level4 = document.getElementById('level4');
+  const level5 = document.getElementById('level5');
+  if (level4) level4.style.display = 'none';
+  if (level5) level5.style.display = 'flex';
+  // Show smoke effect after 5 seconds
+  setTimeout(() => {
+    const smoke = document.getElementById('smokeEffect');
+    if (smoke) smoke.style.display = 'block';
+  }, 5000);
+}
+
+// Attach event handlers once the DOM has been parsed
+document.addEventListener('DOMContentLoaded', () => {
+  const nextBtn = document.getElementById('nextBtn');
+  if (nextBtn) nextBtn.addEventListener('click', showLevel3);
+  const toLevel4Btn = document.getElementById('toLevel4Btn');
+  if (toLevel4Btn) toLevel4Btn.addEventListener('click', showLevel4);
+  const toLevel5Btn = document.getElementById('toLevel5Btn');
+  if (toLevel5Btn) toLevel5Btn.addEventListener('click', showLevel5);
 });

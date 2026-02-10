@@ -16,10 +16,42 @@
 
     <!-- Fun note under the buttons -->
     <!-- Note underneath the buttons; this only appears on the first page and disappears once she answers -->
-    <p class="note">'No' seems to be shy 😉</p>
+    <p class="note">&ldquo;No&rdquo; seems to be shy 😉</p>
 
     <!-- Container for floating hearts -->
     <div id="hearts-container"></div>
+
+    <!-- Button to proceed to the next level (appears after confetti finishes on level 2) -->
+    <button id="nextBtn" class="btn next-btn" style="display: none;">Next</button>
+
+    <!-- Level 3: Surprise message and prompt -->
+    <div id="level3" class="level" style="display: none;">
+      <h2 class="level3-title">Amazing! Great choice, Nassy</h2>
+      <!-- Surprise face image; we will animate this via CSS -->
+      <img src="surprise.png" alt="Surprise face" class="surprise-img" />
+      <p class="level3-text">But wait sugar cake… There’s more</p>
+      <button id="toLevel4Btn" class="btn level-btn">What could that be?</button>
+    </div>
+
+    <!-- Level 4: Pick a day in February -->
+    <div id="level4" class="level" style="display: none;">
+      <h2 class="level4-title">What Day Are You Free in February?</h2>
+      <div class="calendar-container" id="calendarContainer"></div>
+      <button id="toLevel5Btn" class="btn level-btn" style="display: none;">Perfect! Now that our special day is all set, I can't wait to see what adventures we have in store!</button>
+    </div>
+
+    <!-- Level 5: Gift reveal -->
+    <div id="level5" class="level" style="display: none;">
+      <h2 class="level5-title">
+        Surprise! Your V-Day gift is a one-way ticket to “Doing Absolutely Nothing.” We’re going to YO1 Longevity Health &amp; Resort. They’ve got mud baths, hot tubs, and zero itineraries. You just have to show up and let them pamper you. Let's relax and enjoy our stay! 💌
+      </h2>
+      <img src="spa.png" alt="Resort" class="spa-img" />
+      <p class="level5-text">I hope you enjoy what I created. Now let’s have a relaxation time 🧖🏾‍♀️🧖🏾‍♂️</p>
+      <p class="level5-signoff">Love, Kishawn xx</p>
+    </div>
+
+    <!-- Smoke effect overlay for level 5 -->
+    <div id="smokeEffect" class="smoke-effect" style="display: none;"></div>
 
     <!-- Hidden audio player for music -->
     <!--
