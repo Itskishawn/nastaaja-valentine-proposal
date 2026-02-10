@@ -18,7 +18,11 @@ body {
   padding: 1rem;
   text-align: center;
   position: relative;
-  overflow: hidden;
+  /* Allow vertical scrolling so longer level content can be viewed.  We
+     previously set overflow: hidden to constrain the hearts animation, but
+     this prevented scrolling on later levels.  Restrict horizontal scroll
+     instead while still permitting vertical scroll. */
+  overflow-x: hidden;
 }
 
 .question {
@@ -246,6 +250,10 @@ body {
   /* Match the warm gradient used on the first page */
   background: linear-gradient(135deg, #ffe1e8 0%, #f8a1c4 100%);
   color: #d81b60;
+
+  /* Allow vertical scrolling if the content exceeds the viewport height.
+     Without this, long messages on later levels may be cut off. */
+  overflow-y: auto;
 }
 
 /* Titles for levels 3–5 */
@@ -256,6 +264,30 @@ body {
   margin-bottom: 1rem;
   color: #d81b60;
   /* Use the same handwritten font as the celebration text for a romantic feel */
+  font-family: 'Lucida Handwriting', 'Brush Script MT', cursive;
+}
+
+/* Override the style for the level 5 title specifically.  The long gift
+   message benefits from a smaller, more legible font and a standard
+   sans‑serif typeface.  Adjusting the line height makes the text more
+   comfortable to read on smaller screens. */
+/* Override the style for the level 5 title specifically.  The gift reveal
+   needs a more romantic and expressive script font.  Increase the size
+   slightly for emphasis. */
+.level5-title {
+  font-size: 2rem;
+  font-family: 'Lucida Handwriting', 'Brush Script MT', cursive;
+  line-height: 1.4;
+  font-weight: normal;
+  color: #d81b60;
+}
+
+/* Description text under the level 5 title explaining the spa surprise.  Use
+   the same script font but slightly smaller for readability. */
+.level5-description {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: #d81b60;
   font-family: 'Lucida Handwriting', 'Brush Script MT', cursive;
 }
 
@@ -293,29 +325,36 @@ body {
   margin: 0 auto;
 }
 .calendar-container th,
-.calendar-container td {
+.calendar-container td,
+.calendar-container th {
   width: 40px;
   height: 40px;
   text-align: center;
   border-radius: 50%;
   font-size: 1rem;
-  color: #d81b60;
+  /* Use a soft lavender tone for all day numbers by default.  This
+     contrasts with the bright pink on the 14th so it really pops. */
+  color: #a3839b;
+  cursor: default;
 }
+
 .calendar-container th {
   font-weight: bold;
 }
-.calendar-container td {
-  cursor: default;
-}
+
 .calendar-container td.available {
   cursor: pointer;
   /* Highlight the selectable day (14th) with a pink border and bold text */
   border: 2px solid #ff6b81;
   font-weight: bold;
+  /* Use the brighter pink colour for the 14th so it stands out from the other numbers */
+  color: #d81b60;
 }
+
 .calendar-container td.available:hover {
   background-color: #f8a1c4;
 }
+
 .calendar-container td.selected {
   background-color: #ff6b81;
   color: #fff;
