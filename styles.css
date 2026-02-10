@@ -33,8 +33,10 @@ body {
   /* Increase the height of the button container and stack the buttons vertically.  This
      ensures the Yes button stays at the top and the No button starts beneath it.
      The No button is absolutely positioned at the bottom of this container. */
-  /* Reduce the height and spacing so the Yes and No buttons sit closer together */
-  height: 180px;
+  /* Reduce the spacing between the Yes and No buttons but keep enough height
+     so that they don't overlap.  A height of 200px provides a comfortable
+     separation while still keeping them relatively close. */
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -188,16 +190,17 @@ body {
   color: #d81b60;
 }
 
-.best {
-  /* Use similar styling to the "I LOVE YOU" line but without all caps */
-  font-size: 1.6rem;
-  color: #880e4f;
-  font-weight: bold;
-  font-family: inherit;
-}
-
+/*
+ * Style the secondary lines on the celebration screen.  The user requested
+ * that these lines use the same colour as the “Yay!” heading and a more
+ * expressive script-like font.  We achieve this by specifying a cursive
+ * font stack and copying the colour used for the .yay class (#d81b60).
+ */
+.best,
 .love {
   font-size: 1.6rem;
-  color: #880e4f;
+  color: #d81b60;
   font-weight: bold;
+  /* Use a handwritten/script font for a more romantic feel */
+  font-family: 'Lucida Handwriting', 'Brush Script MT', cursive;
 }

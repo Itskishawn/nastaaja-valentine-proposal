@@ -43,15 +43,29 @@ function showLoveMessage() {
     <p class="best">Best decision ever!</p>
     <p class="love">I LOVE YOU 😘</p>
   `;
-  // Trigger confetti for celebration
+  // Trigger the first burst of confetti for celebration
   confetti({
     particleCount: 150,
     spread: 70,
     origin: { y: 0.6 },
   });
 
-  // Change the background to the uploaded image once she answers
-  const bgUrl = '8B81FBBF-208F-4171-841B-F0031EC20145.jpeg';
+  // Schedule additional confetti bursts from all four corners after the
+  // initial celebration has subsided.  This delivers the requested
+  // multi‑directional shower once the first effect is complete.  The delay
+  // (2000ms) roughly matches the duration of the initial burst.
+  setTimeout(() => {
+    // Trigger simultaneous bursts from all four corners.  We vary the
+    // `angle` property to direct confetti diagonally into the centre.
+    [
+      { origin: { x: 0, y: 0 }, angle: 60 },    // top left → down-right
+      { origin: { x: 1, y: 0 }, angle: 120 },   // top right → down-left
+      { origin: { x: 0, y: 1 }, angle: 60 },    // bottom left → up-right
+      { origin: { x: 1, y: 1 }, angle: 120 }    // bottom right → up-left
+    ].forEach((cfg) => {
+      confetti(Object.assign({ particleCount: 100, spread: 90 }, cfg));
+    });
+  }, 2000);
 
   // Hide the note (track-star message) so it's only shown on the initial question screen
   const noteEl = document.querySelector('.note');
@@ -59,19 +73,16 @@ function showLoveMessage() {
     noteEl.style.display = 'none';
   }
 
-  document.body.style.backgroundImage = `url(${bgUrl})`;
-  // Set the background size to "contain" so the full photo is visible
-  document.body.style.backgroundSize = 'contain';
-  document.body.style.backgroundRepeat = 'no-repeat';
-  // Position the image so the couple appears in view.  Using center bottom helps
-  // keep the subjects in the frame while still showing the background.
-  document.body.style.backgroundPosition = 'center bottom';
-
   // Hide the original question heading once she answers so only the celebration message is shown
   const questionEl = document.querySelector('.question');
   if (questionEl) {
     questionEl.style.display = 'none';
   }
+
+  // Keep the pink gradient background for the second level rather than switching
+  // to the photo.  We intentionally avoid overriding the body's background
+  // properties here so the second level matches the first.  This also ensures
+  // there is no white space where the photo does not cover the page.
 
   // Once she answers the question, we leave the iframe alone.  Modern browsers
   // will typically allow unmuted playback after a user interaction, so
