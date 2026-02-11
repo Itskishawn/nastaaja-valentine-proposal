@@ -264,7 +264,9 @@ body {
   margin-bottom: 1rem;
   color: #d81b60;
   /* Use the same handwritten font as the celebration text for a romantic feel */
-  font-family: 'Lucida Handwriting', 'Brush Script MT', cursive;
+  /* Use a classic serif font for better readability.  Script fonts looked
+     nice but were hard to read; Georgia is elegant and legible. */
+  font-family: 'Georgia', 'Times New Roman', serif;
 }
 
 /* Override the style for the level 5 title specifically.  The long gift
@@ -288,7 +290,8 @@ body {
   font-size: 1.5rem;
   line-height: 1.5;
   color: #d81b60;
-  font-family: 'Lucida Handwriting', 'Brush Script MT', cursive;
+  /* Match the level 5 title with the same readable serif font */
+  font-family: 'Georgia', 'Times New Roman', serif;
 }
 
 /* Text in level 3 beneath the surprise image */
